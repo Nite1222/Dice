@@ -7,7 +7,7 @@ int dieNum, counter;
      
   }
   void draw()
-  {
+  { 
      
       background(255,255,255);
       noFill();
