@@ -11,8 +11,8 @@ int dieNum, counter;
      
       background(255,255,255);
       noFill();
-      for(int i=50;i<=700;i+=100){
-        for(int j=50;j<=700;j+=100){
+      for(int i=50;i<=700;i=100+i){
+        for(int j=50;j<=700;j=100+j){
         Die george= new Die(j,i);
         george.show();
         if(dieNum==1){
