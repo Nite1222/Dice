@@ -1,114 +1,82 @@
-int dieNum, counter;
-  void setup()
-  {
-      background(255,255,255);
-      noLoop();
-      size(800,800);
-     
+let dieNum, counter = 0;
+
+function setup() {
+  createCanvas(800, 800);
+  noLoop();
+  background(255);
+}
+
+function draw() {
+  background(255);
+  noFill();
+
+  for (let i = 50; i <= 700; i += 100) {
+    for (let j = 50; j <= 700; j += 100) {
+      let george = new Die(j, i);
+      george.show();
+
+      // Add up dice values
+      if (dieNum == 1) counter++;
+      else if (dieNum == 2) counter += 2;
+      else if (dieNum == 3) counter += 3;
+      else if (dieNum == 4) counter += 4;
+      else if (dieNum == 5) counter += 5;
+      else counter += 6;
+    }
   }
-  void draw()
-  { 
-     
-      background(255,255,255);
-      noFill();
-      for(int i=50;i<=700;i+=100){
-        for(int j=50;j<=700;j+=100){
-        Die george= new Die(j,i);
-        george.show();
-        if(dieNum==1){
-          counter++;
-        }
-        else if(dieNum==2){
-          counter+=2;
-        }
-        else if(dieNum==3){
-          counter+=3;
-        }
-        else if(dieNum==4){
-          counter+=4;
-        }
-        else if(dieNum==5){
-          counter+=5;
-        }
-        else{
-          counter+=6;
-        }
-        System.out.println(dieNum);
-        }
-      }
-      System.out.println(counter);
-      textSize(32);
-      fill(0);
-      text("All the dices add up to "+counter, 220,780);
+
+  textSize(32);
+  fill(0);
+  text("All the dice add up to " + counter, 220, 780);
+}
+
+function mousePressed() {
+  counter = 0;
+  redraw();
+}
+
+class Die {
+  constructor(x, y) {
+    this.myX = x;
+    this.myY = y;
   }
-  void mousePressed()
-  {
-      redraw();
-      counter=0;
+
+  show() {
+    noFill();
+    rect(this.myX, this.myY, 90, 90);
+
+    let randomNum = int(random(1, 7));
+    dieNum = randomNum;
+    fill(0);
+
+    // Draw dice dots
+    if (randomNum == 1) {
+      ellipse(this.myX + 45, this.myY + 45, 20, 20);
+    } else if (randomNum == 2) {
+      ellipse(this.myX + 30, this.myY + 30, 20, 20);
+      ellipse(this.myX + 60, this.myY + 60, 20, 20);
+    } else if (randomNum == 3) {
+      ellipse(this.myX + 20, this.myY + 20, 20, 20);
+      ellipse(this.myX + 45, this.myY + 45, 20, 20);
+      ellipse(this.myX + 70, this.myY + 70, 20, 20);
+    } else if (randomNum == 4) {
+      ellipse(this.myX + 25, this.myY + 25, 20, 20);
+      ellipse(this.myX + 65, this.myY + 25, 20, 20);
+      ellipse(this.myX + 25, this.myY + 65, 20, 20);
+      ellipse(this.myX + 65, this.myY + 65, 20, 20);
+    } else if (randomNum == 5) {
+      ellipse(this.myX + 25, this.myY + 20, 20, 20);
+      ellipse(this.myX + 65, this.myY + 20, 20, 20);
+      ellipse(this.myX + 45, this.myY + 45, 20, 20);
+      ellipse(this.myX + 25, this.myY + 65, 20, 20);
+      ellipse(this.myX + 65, this.myY + 65, 20, 20);
+    } else {
+      ellipse(this.myX + 25, this.myY + 20, 20, 20);
+      ellipse(this.myX + 65, this.myY + 20, 20, 20);
+      ellipse(this.myX + 25, this.myY + 45, 20, 20);
+      ellipse(this.myX + 65, this.myY + 45, 20, 20);
+      ellipse(this.myX + 25, this.myY + 70, 20, 20);
+      ellipse(this.myX + 65, this.myY + 70, 20, 20);
+    }
   }
-  class Die //models one single dice cube
-  {
-    int myX, myY;
-      Die(int x, int y) //constructor
-      {
-         myX=x;
-         myY=y;
-         
-      }
-      void roll()
-      {
-          //your code here
-      }
-      void show()
-      {
-          noFill();
-         int randomNum=(int)(Math.random()*6+1);
-         rect(myX,myY, 90,90);
-         if(randomNum==1){
-           fill(0);
-           ellipse(myX+45,myY+45,20,20);
-           dieNum=1;
-         }
-         else if(randomNum==2){
-           fill(0);
-           ellipse(myX+30,myY+30,20,20);
-           ellipse(myX+60,myY+60,20,20);
-           dieNum=2;
-         }
-         else if(randomNum==3){
-           fill(0);
-           ellipse(myX+20,myY+20,20,20);
-           ellipse(myX+45,myY+45,20,20);
-           ellipse(myX+70,myY+70,20,20);
-           dieNum=3;
-         }
-         else if(randomNum==4){
-           fill(0);
-           ellipse(myX+25, myY+25,20,20);
-           ellipse(myX+65, myY+65,20,20);
-           ellipse(myX+25, myY+65,20,20);
-           ellipse(myX+65,myY+25,20,20);
-           dieNum=4;
-         }
-         else if(randomNum==5){
-           fill(0);
-           ellipse(myX+25,myY+20,20,20);
-           ellipse(myX+65, myY+20,20,20);
-           ellipse(myX+45,myY+45,20,20);
-           ellipse(myX+25,myY+65,20,20);
-           ellipse(myX+65,myY+65,20,20);
-           dieNum=5;
-         }
-         else{
-           fill(0);
-           ellipse(myX+25,myY+20,20,20);
-           ellipse(myX+65,myY+20,20,20);
-           ellipse(myX+25,myY+45,20,20);
-           ellipse(myX+65,myY+45,20,20);
-           ellipse(myX+25,myY+70,20,20);
-           ellipse(myX+65,myY+70,20,20);
-           dieNum=6;
-         }
-       
-      }
-  }
+}
