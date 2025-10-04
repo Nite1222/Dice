@@ -33,10 +33,10 @@ int dieNum, counter;
         else{
           counter+=6;
         }
-        System.out.println(dieNum);
+       
         }
       }
-      System.out.println(counter);
+      
       textSize(32);
       fill(0);
       text("All the dices add up to "+counter, 220,780);
